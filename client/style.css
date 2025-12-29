@@ -18,3 +18,67 @@
 }
 .sent { background: #28a745 }
 .failed { background: #dc3545 }
+
+/* Custom styles for Multi-Device WA Dashboard */
+
+.device-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #dee2e6;
+}
+
+.device-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.device-card.ready {
+    border-left: 4px solid #28a745;
+}
+
+.device-card.qr {
+    border-left: 4px solid #ffc107;
+}
+
+.device-card.disconnected {
+    border-left: 4px solid #dc3545;
+}
+
+.status-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.qr-container {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    display: inline-block;
+    border: 1px solid #dee2e6;
+}
+
+.table-history tbody tr:hover {
+    background-color: rgba(0,123,255,0.05);
+}
+
+/* Spinner animation */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.pulse-animation {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .btn-group {
+        flex-wrap: wrap;
+    }
+    
+    .btn-group .btn {
+        flex: 1;
+        min-width: 120px;
+        margin-bottom: 5px;
+    }
+}

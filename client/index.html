@@ -2,114 +2,23 @@
 <html lang="id">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WA Dashboard</title>
-
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8">
+  <title>WA Devices</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
-  <div class="container">
-    <div class="card my-5">
-      <div class="card-header">
-        <div class="d-flex justify-content-between my-2">
-          <h4>Devices</h4>
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              <i class="fas fa-add"></i> Add Device
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table text-nowrap">
-            <thead>
-              <tr>
-                <th class="">Device</th>
-                <th class="text-end">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <i class="fas fa-phone"></i>
-                  <p class="mb-0 d-inline" id="number">-</p>
-                  <br />
-                  <i class="fas fa-user"></i>
-                  <p class="mb-0 d-inline" id="name">-</p>
-                  <br />
-                  <i class="fas fa-circle-dot"></i>
-                  <p class="mb-0 d-inline" id="state" class="status">
-                    LOADING
-                  </p>
-                </td>
-                <td class="text-end align-middle">
-                  <button id="btnReconnect" class="btn btn-primary">
-                    <i class="fas fa-sync me-1"></i> Reconnect
-                  </button>
-                  <button id="btnDisconnect" class="btn btn-danger">
-                    <i class="fas fa-power-off me-1"></i> Disconnect
-                  </button>
-                  <button class="btn btn-warning">
-                    <i class="fas fa-edit me-1"></i> Edit
-                  </button>
-                  <button class="btn btn-danger">
-                    <i class="fas fa-trash me-1"></i> Delete
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <div class="container my-4">
+    <div class="d-flex justify-content-between mb-3">
+      <h3>WhatsApp Devices</h3>
+
+      <div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Add Device
+        </button>
+        <a href="/logout" class="btn btn-danger">Logout</a>
       </div>
     </div>
-
-    <div class="card mb-3" id="qrCard" style="display:none;">
-      <div class="card-header">
-        <h5 class="mb-0">Scan QR WhatsApp</h5>
-      </div>
-      <div class="card-body text-center">
-        <p class="text-muted mb-2">
-          Scan QR ini menggunakan WhatsApp di HP
-        </p>
-        <img id="qr" class="img-fluid" style="max-width:300px;" />
-      </div>
-    </div>
-
-
-    <card class="card mb-3">
-      <div class="card-header">
-        <h4>History</h4>
-      </div>
-      <div class="card-body">
-        <div class="table-responsive mt-3">
-          <table class="table text-nowrap  align-middle">
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Nomor</th>
-                <th>Pesan</th>
-                <th>Waktu</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody id="history"></tbody>
-          </table>
-        </div>
-      </div>
-    </card>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -119,126 +28,177 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form>
-              <div class="form-group mb-2">
-                <label for="name" class="form-label">Name:</label>
-                <input type="text" class="form-control" id="name" />
-              </div>
-              <div class="form-group mb-2">
-                <label for="number" class="form-label">Number:</label>
-                <input type="number" class="form-control" id="number" />
-              </div>
-            </form>
+            <div class="mb-3">
+              <label for="newId" class="form-label">Device ID</label>
+              <input type="text" class="form-control" id="newId" placeholder="device-id">
+            </div>
+            <div class="mb-3">
+              <label for="newName" class="form-label">Device Name</label>
+              <input type="text" class="form-control" id="newName" placeholder="name">
+            </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-              <i class="fas fa-ban"></i> Close
-            </button>
-            <button type="submit" class="btn btn-primary">
-              <i class="fas fa-save"></i> Save
-            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button id="addBtn" class="btn btn-success">Add Device</button>
           </div>
         </div>
+      </div>
+    </div>
+
+
+    <div id="devices" class="row"></div>
+  </div>
+
+  <!-- QR MODAL -->
+  <div class="modal fade" id="qrModal">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+      <div class="modal-content p-3 text-center">
+        <h5>Scan QR</h5>
+        <img id="qrImg" class="img-fluid">
       </div>
     </div>
   </div>
 
   <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
   <script>
     const socket = io();
+    const devicesEl = document.getElementById("devices");
+    const qrModal = new bootstrap.Modal(document.getElementById("qrModal"));
 
-    /* ===== ELEMENT ===== */
-    const elState = document.getElementById("state");
-    const elNumber = document.getElementById("number");
-    const elName = document.getElementById("name");
+    const addBtn = document.getElementById("addBtn");
+    const addModalEl = document.getElementById("exampleModal");
+    const addModal = bootstrap.Modal.getOrCreateInstance(addModalEl);
 
-    const btnReconnect = document.getElementById("btnReconnect");
-    const btnDisconnect = document.getElementById("btnDisconnect");
-
-    const qrCard = document.getElementById("qrCard");
-    const qrImg = document.getElementById("qr");
-
-    /* ===== BUTTON ACTION ===== */
-    btnReconnect.addEventListener("click", () => {
-      socket.emit("wa:reconnect");
-    });
-
-    btnDisconnect.addEventListener("click", () => {
-      socket.emit("wa:disconnect");
-    });
-
-    /* ===== STATUS ===== */
-    socket.on("status", (data) => {
-      elState.textContent = data.state;
-
-      elState.style.color =
-        data.state === "READY" ? "#28a745" : "#ffc107";
-
-      btnReconnect.disabled = data.state === "READY";
-      btnDisconnect.disabled = data.state !== "READY";
-
-      // QR hanya tampil jika belum READY
-      if (data.state === "READY") {
-        qrCard.style.display = "none";
+    addBtn.onclick = async () => {
+      if (!newId.value) {
+        alert("Device ID wajib diisi");
+        return;
       }
-    });
 
-    /* ===== INFO DEVICE ===== */
-    socket.on("info", (info) => {
-      elNumber.textContent = info.number || "-";
-      elName.textContent = info.name || "-";
-    });
-
-    /* ===== QR ===== */
-    socket.on("qr", (qr) => {
-      if (!qr) return;
-      qrImg.src = qr;
-      qrCard.style.display = "block";
-    });
-  </script>
-
-
-
-  <script>
-    const historyEl = document.getElementById("history");
-
-    function renderHistory(list) {
-      historyEl.innerHTML = "";
-      list.forEach((item, index) => addHistoryRow(item, list.length - index));
-    }
-
-    function addHistoryRow(item, no = 1) {
-      const tr = document.createElement("tr");
-
-      tr.innerHTML = `
-      <td>${no}</td>
-      <td>
-        <strong>${item.phone}</strong>
-      </td>
-      <td >
-        ${item.message}
-      </td>
-      <td>
-        <small>${item.time}</small>
-      </td>
-      <td>
-        <span class="badge ${item.status === "SENT" ? "bg-success" : "bg-danger"
-        }">
-          ${item.status}
-        </span>
-      </td>
+      // 🔒 disable + loading
+      addBtn.disabled = true;
+      const originalText = addBtn.innerHTML;
+      addBtn.innerHTML = `
+      <span class="spinner-border spinner-border-sm me-2"></span>
+      Menyimpan...
     `;
 
-      historyEl.prepend(tr);
+      try {
+        const res = await fetch("/api/device", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            device_id: newId.value.trim(),
+            name: newName.value.trim()
+          })
+        });
+
+        if (!res.ok) throw new Error("Gagal menambah device");
+
+        // reset form
+        newId.value = "";
+        newName.value = "";
+
+        // close modal
+        addModal.hide();
+
+        // reload page → paling stabil utk lifecycle WA
+        setTimeout(() => location.reload(), 300);
+
+      } catch (err) {
+        alert(err.message);
+      } finally {
+        // 🔓 restore button (jika error)
+        addBtn.disabled = false;
+        addBtn.innerHTML = originalText;
+      }
+    };
+
+    function render(d) {
+      if (document.getElementById(d.device_id)) return;
+      devicesEl.insertAdjacentHTML("beforeend", `
+  <div class="col-md-4" id="${d.device_id}">
+    <div class="card mb-3">
+      <div class="card-header fw-bold d-flex justify-content-between">
+        ${d.name || d.device_id}
+        <button class="btn btn-sm btn-outline-danger del">×</button>
+      </div>
+      <div class="card-body">
+        <p>Status: <span class="state">INIT</span></p>
+        <p>Device ID: <span class="id">${d.device_id}</span></p>
+        <p>Number: <span class="number">-</span></p>
+        <div class="btns mb-2"></div>
+        <ul class="list-group history"></ul>
+      </div>
+    </div>
+  </div>`);
     }
 
-    socket.on("history:init", renderHistory);
-    socket.on("history:update", addHistoryRow);
+    function updateButtons(el, state) {
+      const btns = el.querySelector(".btns");
+      btns.innerHTML = "";
+
+      if (state === "QR")
+        btns.innerHTML = `<button class="btn btn-sm btn-primary qr">QR</button>`;
+
+      if (state === "READY")
+        btns.innerHTML = `
+      <button class="btn btn-sm btn-secondary historyBtn">History</button>
+      <button class="btn btn-sm btn-danger disconnect">Disconnect</button>`;
+    }
+
+    socket.on("device:list", list => list.forEach(render));
+    socket.on("device:added", render);
+    socket.on("device:removed", id => document.getElementById(id)?.remove());
+
+    socket.on("device:status", d => {
+      const el = document.getElementById(d.deviceId);
+      if (!el) return;
+      el.querySelector(".state").innerText = d.state;
+      updateButtons(el, d.state);
+    });
+
+    socket.on("device:info", d => {
+      const el = document.getElementById(d.deviceId);
+      if (el) el.querySelector(".number").innerText = d.info.number;
+    });
+
+    socket.on("device:qr", d => {
+      qrImg.src = d.qr;
+      qrModal.show();
+    });
+
+    devicesEl.onclick = e => {
+      const card = e.target.closest(".col-md-4");
+      if (!card) return;
+      const id = card.id;
+
+      if (e.target.classList.contains("qr")) socket.emit("device:getQr", id);
+      if (e.target.classList.contains("disconnect")) socket.emit("device:disconnect", id);
+      if (e.target.classList.contains("historyBtn")) socket.emit("history:get", id);
+
+      if (e.target.classList.contains("del")) {
+        fetch(`/api/device/${id}`, { method: "DELETE" });
+      }
+    };
+
+    socket.on("history:data", d => {
+      const ul = document.querySelector(`#${d.deviceId} .history`);
+      ul.innerHTML = "";
+      d.rows.forEach(r => {
+        ul.insertAdjacentHTML("beforeend", `
+      <li class="list-group-item small">
+        <b>${r.phone}</b><br>
+        ${r.message}<br>
+        <span class="text-${r.status === 'SENT' ? 'success' : 'danger'}">${r.status}</span>
+      </li>`);
+      });
+    });
   </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+
 </body>
 
 </html>
